@@ -107,7 +107,15 @@ new class extends Component {
                 </x-file>
                 <x-input label="Name" wire:model="name" />
                 <x-input label="Email" wire:model="email" />
+                <x-select label="Country" wire:model="country_id" :options="$countries" placeholder="---" />
 
+                {{-- Multiple section --}}
+                <x-choices-offline
+                    label="My languages"
+                    wire:model="my_languages"
+                    :options="$languages"
+                    seachable
+                />
             </div>
         </div>
 
@@ -119,15 +127,6 @@ new class extends Component {
                 <x-header title="Details" subtitle="More about the user" size="text-lg" />
             </div>
             <div class="col-span-3 grid gap-3">
-                <x-select label="Country" wire:model="country_id" :options="$countries" placeholder="---" />
-
-                {{-- Multiple section --}}
-                <x-choices-offline
-                    label="My languages"
-                    wire:model="my_languages"
-                    :options="$languages"
-                    seachable
-                />
                 <x-editor wire:model="bio" label="Biography" hint="The great biography" />
             </div>
         </div>
