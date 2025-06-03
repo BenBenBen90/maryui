@@ -44,9 +44,20 @@
                 @if($user = auth()->user())
                     <x-menu-separator />
 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded" :link="route('logout')">
                         <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
+                            {{-- <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" /> --}}
+                            <x-dropdown>
+                                <x-slot:trigger>
+                                    <x-button icon="o-chevron-down" class="btn-circle" />
+                                </x-slot:trigger>
+                                <x-menu-item title="Change Password" icon="o-key" />
+
+                                {{-- no-wire-navigate: The button will now behave like a regular <a href="..."> link --}}
+                                {{-- It disables Livewire's automatic client-side navigation (wire:navigate) --}}
+                                {{-- It forces a full browser redirect instead of Livewire’s internal handling --}}
+                                <x-menu-item title="Logout" icon="o-power" no-wire-navigate :link="route('logout')" />
+                            </x-dropdown>
                         </x-slot:actions>
                     </x-list-item>
 
@@ -73,6 +84,6 @@
     <x-toast />
 
     {{--  Spotlight --}}
-    <x-spotlight />  
+    <x-spotlight />
 </body>
 </html>

@@ -13,7 +13,7 @@ Route::get('logout', function () {
     request()->session()->regenerateToken();
 
     return redirect('/');
-});
+})->name('logout');
 
 // Public routes
 Volt::route('register', 'register');
